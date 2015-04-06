@@ -42,8 +42,8 @@ int main() {
 
 	
     while(1) {
-	connection_fd1 = accept(listen_fd1, (struct sockaddr*) &client_addr, &client_length); 
-	connection_fd2 = accept(listen_fd2, (struct sockaddr*) &client_addr, &client_length); 
+		connection_fd1 = accept(listen_fd1, (struct sockaddr*) &client_addr, &client_length); 
+		connection_fd2 = accept(listen_fd2, (struct sockaddr*) &client_addr, &client_length); 
 		if (read(connection_fd1, buffer, sizeof(buffer) - 1) < 0) {
 			break;
 		}
