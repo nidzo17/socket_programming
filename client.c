@@ -21,12 +21,12 @@ int main() {
         return 1;
     } 
     if ((socket2 = socket(AF_INET, SOCK_STREAM, 0)) < 0 ) {
-		fprintf(stderr, "ERROR: Creating 2nd socket failed.\n");
+        fprintf(stderr, "ERROR: Creating 2nd socket failed.\n");
         return 1;
     } 
     
     memset(&serv_addr1, 0, sizeof(serv_addr1)); 
-	memset(&serv_addr2, 0, sizeof(serv_addr2)); 
+    memset(&serv_addr2, 0, sizeof(serv_addr2)); 
 	
     serv_addr1.sin_family = AF_INET;
     serv_addr1.sin_port = htons(PORT1); 
@@ -52,7 +52,7 @@ int main() {
     printf("> ");
     fgets(buffer, 1024, stdin);
     
-	printf("Sending to 1st socket: %s\n", buffer);
+    printf("Sending to 1st socket: %s\n", buffer);
     if (write(socket1, buffer, sizeof(buffer)) < 0) {
          fprintf(stderr, "ERROR: Writing to socket failed.\n");
          return 1;
@@ -60,15 +60,14 @@ int main() {
     
 	memset(&buffer, 0, sizeof(buffer));
     while(1) {
-		if (read(socket2, buffer, sizeof(buffer) - 1) <= 0) {
-			break;
-		}
-		printf("Received from 2nd socket: %s\n", buffer);
-		memset(&buffer, 0, sizeof(buffer));
+	    if (read(socket2, buffer, sizeof(buffer) - 1) <= 0)
+            break;
+        printf("Received from 2nd socket: %s\n", buffer);
+        memset(&buffer, 0, sizeof(buffer));
 	}
 	
-	close(socket1);
-	close(socket2);
+    close(socket1);
+    close(socket2);
 	
     return 0;
 }
