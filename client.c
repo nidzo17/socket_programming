@@ -58,13 +58,13 @@ int main() {
          return 1;
     }
     
-	memset(&buffer, 0, sizeof(buffer));
+    memset(&buffer, 0, sizeof(buffer));
     while(1) {
-	    if (read(socket2, buffer, sizeof(buffer) - 1) <= 0)
+        if (read(socket2, buffer, sizeof(buffer) - 1) <= 0)
             break;
         printf("Received from 2nd socket: %s\n", buffer);
         memset(&buffer, 0, sizeof(buffer));
-	}
+    }
 	
     close(socket1);
     close(socket2);
